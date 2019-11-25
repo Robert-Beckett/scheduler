@@ -16,11 +16,10 @@ export default function InterviewerList({
       <ul className="interviewers__list">
         {interviewers.map((current) => {
           return <InterviewerListItem
-            id={current.id}
             name={current.name}
             avatar={current.avatar}
             selected={current.id === interviewer}
-            setInterviewer={setInterviewer}
+            setInterviewer={(event) => setInterviewer(current.id)}
           />
         })}
       </ul>
