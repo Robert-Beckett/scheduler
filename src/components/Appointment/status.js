@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function(props) {
+export default function({ message }) {
   return (
     <main className="appointment__card appointment__card--status">
       <img
@@ -8,7 +8,7 @@ export default function(props) {
         src="images/status.png"
         alt="Loading"
       />
-      <h1 className="text--semi-bold">Deleting</h1>
+      <h1 className="text--semi-bold">{message}</h1>
     </main>
   );
 }
