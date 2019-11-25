@@ -17,7 +17,7 @@ export default function InterviewerListItem({
 
   return (
     <li className={interviewerClass} onClick={
-      () => setInterviewer
+      () => setInterviewer(id)
     }>
       <img
         className={intImageClass}
