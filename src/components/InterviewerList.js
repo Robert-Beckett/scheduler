@@ -1,12 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
 
 import "components/InterviewerListItem.scss";
 
 import InterviewerListItem from 'components/InterviewerListItem';
 
 export default function InterviewerList({
-  interviewers, interviewer, setInterviewer
+  interviewers, value, onChange
 }) {
   return (
     <section className="interviewers">
@@ -16,10 +15,11 @@ export default function InterviewerList({
       <ul className="interviewers__list">
         {interviewers.map((current) => {
           return <InterviewerListItem
+            key={current.id}
             name={current.name}
             avatar={current.avatar}
-            selected={current.id === interviewer}
-            setInterviewer={(event) => setInterviewer(current.id)}
+            selected={current.id === value}
+            setInterviewer={(event) => onChange(current.id)}
           />
         })}
       </ul>
