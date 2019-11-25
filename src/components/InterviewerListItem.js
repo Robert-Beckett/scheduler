@@ -22,7 +22,7 @@ export default function InterviewerListItem({
         src={avatar}
         alt={name}
       />
-      {selected ? name : ''}
+      {selected && name}
     </li>
   );
 }
