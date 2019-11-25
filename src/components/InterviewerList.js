@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "components/InterviewerListItem.scss";
+import "components/InterviewerList.scss";
 
 import InterviewerListItem from 'components/InterviewerListItem';
 
@@ -19,7 +19,7 @@ export default function InterviewerList({
             name={current.name}
             avatar={current.avatar}
             selected={current.id === value}
-            setInterviewer={(event) => onChange(current.id)}
+            onChange={(event) => onChange(current.id)}
           />
         })}
       </ul>
