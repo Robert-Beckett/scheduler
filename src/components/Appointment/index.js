@@ -6,11 +6,17 @@ import Header from "components/Appointment/header";
 import Show from "components/Appointment/show";
 import Empty from "components/Appointment/empty";
 
-export default function Appointment({id, time, ...props}) {
+export default function Appointment(props) {
   return (
     <article className="appointment">
-      <Header time={time}/>
-      {props.interview ? <Show /> : <Empty />}
+      <Header time={props.time}/>
+      {props.interview ? 
+        <Show
+          student={props.interview.student}
+          interviewer={props.interview.interviewer}
+        /> 
+        : 
+        <Empty />}
     </article>
   );
 }

@@ -139,12 +139,19 @@ storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ names: "white", values: "#fff", default: true}]
   })
-  .add("Appointment", () => (
-    <Appointment />
-  ))
   .add("Appointment Empty", () => (
     <>
       <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
+    </>
+  ))
+  .add("Appointment Booked", () => (
+    <>
+      <Appointment
+        id={1}
+        time="12pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer: interviewers[2]}}
+      />
       <Appointment id="last" time="1pm" />
     </>
   ))
