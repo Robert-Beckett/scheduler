@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Button from 'components/Button';
 import InterviewerList from 'components/InterviewerList';
-import { action } from '@storybook/addon-actions/dist/preview';
+
 
 export default function({
   interviewers, onSave, onCancel, ...prop
@@ -43,7 +43,8 @@ export default function({
           }}>
             Cancel
           </Button>
-          <Button confirm onClick={onSave}>
+          {/* Ask Jensen why this has to be wrapped in a function to work. */}
+          <Button confirm onClick={() => onSave(name, interviewer)}>
             Save
           </Button>
         </section>
