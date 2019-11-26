@@ -43,7 +43,7 @@ export default function({
           }}>
             Cancel
           </Button>
-          {/* Ask Jensen why this has to be wrapped in a function to work. */}
+          
           <Button confirm onClick={() => onSave(name, interviewer)}>
             Save
           </Button>
