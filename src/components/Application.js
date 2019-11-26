@@ -89,16 +89,12 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointments.map(appointment => {
-          if (appointment.hasOwnProperty('interview')) {
-            return <Appointment
-              time={appointment.time}
-              interview={appointment.interview}
-                   />
-          } else {
-            return <Appointment
-              time={appointment.time}
-                   />
-          }
+
+        return <Appointment
+          id={appointment.id}
+          {...appointment}
+                />
+
         })}
       </section>
     </main>
