@@ -142,10 +142,11 @@ storiesOf("Appointment", module)
   .add("Appointment", () => (
     <Appointment />
   ))
-  .add("Appointment with Time", () => (
-    <Appointment 
-      time={"12pm"}
-    />
+  .add("Appointment Empty", () => (
+    <>
+      <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
+    </>
   ))
   .add("Header", () => (
     <Header 
