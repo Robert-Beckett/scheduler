@@ -19,7 +19,7 @@ export default function Application(props) {
 
   const setDay = day => setState({ ...state, day });
 
-  const bookInterview = (id, interview) => {
+  function bookInterview (id, interview) {
     console.log(id, interview);
   }
 

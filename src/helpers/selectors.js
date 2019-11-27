@@ -11,11 +11,8 @@ export function getAppointmentsForDay(state, day) {
 export function getInterviewersForDay(state, day) {
   try {
     return state.days
-      .filter(thisDay => thisDay.name === day)[0].appointments
-      .map(appointId => state.appointments[appointId.toString()])
-      .filter(timeslot => timeslot.interview !== null)
-      .map(current => current.interview.interviewer)
-      .map(id => state.interviewers[id.toString()]);
+      .filter(thisDay => thisDay.name === day)[0].interviewers
+      .map(appointId => state.interviewers[appointId.toString()])
   } catch {
     return [];
   }
