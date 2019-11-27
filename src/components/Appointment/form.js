@@ -7,7 +7,6 @@ import InterviewerList from 'components/InterviewerList';
 export default function Form({
   interviewers, onSave, onCancel, newName, newInterviewer
 }) {
-  console.log('TEST');
   const [name, setName] = useState(newName || "");
   const [interviewer, setInterviewer] = useState(
     newInterviewer || null

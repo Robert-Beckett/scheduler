@@ -24,7 +24,6 @@ export default function Appointment(props) {
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => {
         transition(CREATE);
-        console.log('called');
         }} />}
       {mode === SHOW && (
         <Show
