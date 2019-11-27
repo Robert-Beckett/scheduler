@@ -39,6 +39,22 @@ export default function Application(props) {
       });
   }
 
+  const cancelInterview = (id) => {
+    return axios.delete(`/api/appointments/${id}`)
+      .then((res) => {
+        if (res.status === 500) {
+          const appointment = {
+            ...state.appointments[id],
+            interview: null
+          };
+
+          setState({
+            ...state, appointment
+          });
+        }
+      });
+  }
+
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -88,6 +104,7 @@ export default function Application(props) {
           interview={interview}
           interviewers={getInterviewersForDay(state, state.day)}
           bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
                 />
         })}
         <Appointment key="last" time="5pm"/>
