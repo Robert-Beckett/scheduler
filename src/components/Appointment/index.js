@@ -6,6 +6,7 @@ import Header from "components/Appointment/header";
 import Show from "components/Appointment/show";
 import Empty from "components/Appointment/empty";
 import Form from "components/Appointment/form"
+import Status from "components/Appointment/status";
 import useVisualMode from "hooks/useVisualMode";
 
 const EMPTY = "EMPTY";
@@ -24,6 +25,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    transition(SAVING);
     props.bookInterview(props.id, interview)
       .then((res) => {
         transition(SHOW);
@@ -49,6 +51,9 @@ export default function Appointment(props) {
           onSave={save}
           onCancel={back}
         />
+      )}
+      {mode === SAVING && (
+        <Status/>
       )}
     </article>
   );
