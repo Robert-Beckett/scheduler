@@ -7,14 +7,14 @@ export default function useVisualMode(initial) {
   const transition = (mode, replace = false) => {
     setMode(mode);
     if (replace) {
-      setHistory(history => {
-        history[history.length - 1] = mode;
-        return history;
+      setHistory(prev => {
+        prev[prev.length - 1] = mode;
+        return prev;
       })
     } else {
-      setHistory(history => {
-        history.push(mode);
-        return history;
+      setHistory(prev => {
+        prev.push(mode);
+        return prev;
       })
     }
   };
@@ -22,9 +22,9 @@ export default function useVisualMode(initial) {
   const back = () => {
     if (history.length > 1) {
       setMode(history[history.length - 2]);
-      setHistory(history => {
-        history.pop();
-        return history;
+      setHistory(prev => {
+        prev.pop();
+        return prev;
       });
     }
   };
