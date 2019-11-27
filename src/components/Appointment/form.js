@@ -4,13 +4,16 @@ import Button from 'components/Button';
 import InterviewerList from 'components/InterviewerList';
 
 
-export default function({
-  interviewers, onSave, onCancel, ...prop
+export default function Form({
+  interviewers, onSave, onCancel, newName, newInterviewer
 }) {
-  const [name, setName] = useState(prop.name || "");
+  console.log('TEST');
+  const [name, setName] = useState(newName || "");
   const [interviewer, setInterviewer] = useState(
-    prop.interviewer || null
+    newInterviewer || null
   );
+
+  
 
   const reset = () => {
     setName("");
