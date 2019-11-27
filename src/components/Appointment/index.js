@@ -29,7 +29,6 @@ export default function Appointment(props) {
   };
 
   save(props.name, props.interviewer);
-
   return (
     <article className="appointment">
       <Header time={props.time}/>
