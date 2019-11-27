@@ -7,7 +7,7 @@ import DayList from "components/DayList";
 import Appointment from "components/Appointment/index";
 
 import { 
-  getAppointmentsForDay, getInterview
+  getAppointmentsForDay, getInterview, getInterviewersForDay
 } from '../helpers/selectors';
 
 export default function Application(props) {
@@ -67,6 +67,7 @@ export default function Application(props) {
           key={appointment.id}
           {...appointment}
           interview={interview}
+          interviewers={getInterviewersForDay()}
                 />
         })}
         <Appointment key="last" time="5pm"/>
