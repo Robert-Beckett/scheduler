@@ -6,7 +6,6 @@ export default function useApplicationData() {
   const SET_DAY = "SET_DAY";
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const SET_INTERVIEW = "SET_INTERVIEW";
-  const DELETE_INTERVIEW = "DELETE_INTERVIEW";
 
   function reducer(state, action) {
     switch (action.type) {
@@ -15,14 +14,15 @@ export default function useApplicationData() {
       case SET_APPLICATION_DATA:
         return { ...state, ...action.value }
       case SET_INTERVIEW:
-        return { ...state, appointments: action.value }
-      case DELETE_INTERVIEW:
-        return { ...state, appointments: action.value }
+        console.log(action.value.days)
+        return { ...state, 
+          appointments: action.value.appointments,
+          days: action.value.days }
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`
         );
-      }
+    }
   }
 
   const [state, dispatch] = useReducer(reducer, {
@@ -63,7 +63,13 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, appointment)
       .then((res) => {
         if (res.status === 204) {
-          dispatch({ type: SET_INTERVIEW, value: appointments });
+          const day = getDayByInterview(id);
+          day.spots--;
+          const days = state.days;
+          days[day.id - 1] = day
+          dispatch({ type: SET_INTERVIEW, value: 
+            { appointments, days }
+          });
         }
         else throw new Error("Unexpected response");
       });
@@ -72,18 +78,37 @@ export default function useApplicationData() {
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`)
       .then((res) => {
-        if (res.status === 500) {
+        if (res.status === 204) {
+          const day = getDayByInterview(id);
+          
+          day.spots++;
+          const days = state.days;
+          days[day.id - 1] = day;
+
           const appointment = {
             ...state.appointments[id],
             interview: null
           };
+
+          const appointments = {
+            ...state.appointments,
+            [id]: appointment
+          };
   
           dispatch({
-            type: DELETE_INTERVIEW, value: appointment
+            type: SET_INTERVIEW, value: 
+              { appointments, days }
           });
         }
       });
   }
+
+  const getDayByInterview = (interviewId) => {
+    for (const day of state.days) {
+      if (day.appointments.includes(interviewId))
+        return day;
+    }
+  };
 
   return {
     state,
