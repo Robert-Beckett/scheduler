@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import axios from 'axios';
 
 export default function useApplicationData() {
@@ -6,6 +6,7 @@ export default function useApplicationData() {
   const SET_DAY = "SET_DAY";
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const SET_INTERVIEW = "SET_INTERVIEW";
+  const DELETE_INTERVIEW = "DELETE_INTERVIEW";
 
   function reducer(state, action) {
     switch (action.type) {
@@ -14,10 +15,12 @@ export default function useApplicationData() {
       case SET_APPLICATION_DATA:
         return { ...state, ...action.value }
       case SET_INTERVIEW:
-        return { ...state, appointments: action.appointments }
+        return { ...state, appointments: action.value }
+      case DELETE_INTERVIEW:
+        return { ...state, appointments: action.value }
       default:
         throw new Error(
-          `Tried to reduce wih unsupported action type: ${action.type}`
+          `Tried to reduce with unsupported action type: ${action.type}`
         );
       }
   }
@@ -60,7 +63,7 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, appointment)
       .then((res) => {
         if (res.status === 204) {
-          dispatch({ type: SET_INTERVIEW, appointments });
+          dispatch({ type: SET_INTERVIEW, value: appointments });
         }
         else throw new Error("Unexpected response");
       });
@@ -76,7 +79,7 @@ export default function useApplicationData() {
           };
   
           dispatch({
-            type: SET_INTERVIEW, value: appointment
+            type: DELETE_INTERVIEW, value: appointment
           });
         }
       });

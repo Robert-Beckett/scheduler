@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React from "react";
 
 import "components/Application.scss";
 
@@ -20,13 +19,11 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-
+  console.log(state);
 
   const appointments = getAppointmentsForDay(state, state.day)
-  .map((appointment, i) => {
+  .map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
-    console.log(state);
     
     return <Appointment
       key={appointment.id}

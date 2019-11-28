@@ -31,5 +31,4 @@ export function getInterview(state, interview) {
   } catch {
     return null;
   }
-  
 }

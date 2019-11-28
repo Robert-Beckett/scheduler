@@ -40,7 +40,7 @@ export default function Appointment(props) {
       .catch(() => transition(ERROR_SAVE, true));
   };
 
-  const edit = (id) => {
+  const edit = () => {
     transition(EDIT);
   }
 
