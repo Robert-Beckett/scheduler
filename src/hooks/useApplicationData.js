@@ -94,7 +94,7 @@ export default function useApplicationData() {
             ...state.appointments,
             [id]: appointment
           };
-  
+          
           dispatch({
             type: SET_INTERVIEW, value: 
               { appointments, days }

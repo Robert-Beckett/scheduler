@@ -19,7 +19,7 @@ export default function InterviewerList({
             name={current.name}
             avatar={current.avatar}
             selected={current.id === value}
-            onChange={(event) => onChange(current.id)}
+            onChange={() => onChange(current.id)}
           />
         })}
       </ul>
