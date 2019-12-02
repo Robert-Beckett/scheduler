@@ -23,11 +23,20 @@ export default function Form({
     onCancel();
   };
 
+  const save = (name, interviewer) => {
+    if (!name) {
+      setError("Student name cannot be blank");
+    }
+
+    return onSave(name, interviewer);
+  };
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off">
           <input
+            data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
