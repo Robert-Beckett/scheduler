@@ -5,7 +5,7 @@ describe('Appointments', () => {
     cy.contains("Monday");
   })
 
-  it('should book an interview', () => {
+  xit('should book an interview', () => {
     cy.get('[alt="Add"]').first()
       .click();
 
@@ -21,7 +21,7 @@ describe('Appointments', () => {
       .contains('.appointment__card--show', 'Sylvia Palmer');
   });
 
-  it('should edit an interview', () => {
+  xit('should edit an interview', () => {
     cy.get('[alt="Edit"]')
       .click({force: true});
 
@@ -37,4 +37,18 @@ describe('Appointments', () => {
     cy.contains('.appointment__card--show', 'Frank Ferrell')
     .contains('.appointment__card--show', 'Tori Malcolm');
   });
+
+  it('should delete an interview', () => {
+    cy.get('[alt="Delete"]')
+      .click({force: true});
+
+    cy.contains('Confirm')
+      .click();
+
+    cy.get('[alt="Loading"]')
+      .should("exist");
+
+    cy.contains('.appointment__card--show', 'Archie Cohen')
+      .should('not.exist');
+  })
 });
