@@ -31,8 +31,6 @@ describe("Application", () => {
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
 
-    
-
     fireEvent.click(getByAltText(appointment, "Add"));
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
@@ -82,7 +80,7 @@ describe("Application", () => {
       .find(element => queryByText(element, "Monday"));
     
 
-    expect(getByText(monday, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(monday, "2 spot remaining")).toBeInTheDocument();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
