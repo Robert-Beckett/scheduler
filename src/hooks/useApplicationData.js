@@ -1,29 +1,13 @@
 import { useReducer, useEffect } from 'react';
 import axios from 'axios';
 
+import reducer, {
+  SET_DAY,
+  SET_APPLICATION_DATA,
+  SET_INTERVIEW
+} from "reducers/application";
+
 export default function useApplicationData() {
-
-  const SET_DAY = "SET_DAY";
-  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-  const SET_INTERVIEW = "SET_INTERVIEW";
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case SET_DAY:
-        return { ...state, day: action.value }
-      case SET_APPLICATION_DATA:
-        return { ...state, ...action.value }
-      case SET_INTERVIEW:
-        console.log(action.value.days)
-        return { ...state, 
-          appointments: action.value.appointments,
-          days: action.value.days }
-      default:
-        throw new Error(
-          `Tried to reduce with unsupported action type: ${action.type}`
-        );
-    }
-  }
 
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
