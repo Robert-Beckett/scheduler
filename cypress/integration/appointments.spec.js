@@ -22,6 +22,19 @@ describe('Appointments', () => {
   });
 
   it('should edit an interview', () => {
+    cy.get('[alt="Edit"]')
+      .click({force: true});
 
+    cy.get('[data-testid="student-name-input"]')
+      .clear().type("Frank Ferrell");
+
+    cy.get('[alt="Tori Malcolm"')
+      .click();
+
+    cy.contains('Save')
+      .click();
+
+    cy.contains('.appointment__card--show', 'Frank Ferrell')
+    .contains('.appointment__card--show', 'Tori Malcolm');
   });
 });
