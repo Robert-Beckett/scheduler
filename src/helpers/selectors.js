@@ -32,3 +32,29 @@ export function getInterview(state, interview) {
     return null;
   }
 }
+
+export function getInterviewsForDay(state, day) {
+  for (const item of state.days) {
+    if (item.name === day) {
+      return item.appointments;
+    }
+  }
+}
+
+export function getAppointmentsById(state, appointmentIds) {
+  const appointments = [];
+  for (const appointment in state.appointments) {
+    if (appointmentIds.includes(Number(appointment))) {
+      appointments.push(state.appointments[appointment]);
+    }
+  }
+  return appointments;
+}
+
+export function getSpotsForDay(state, day) {
+  for (const day of state.days) {
+    if (day.name === day) {
+      return day;
+    }
+  }
+}

@@ -79,8 +79,10 @@ describe("Application", () => {
     const monday = getAllByTestId(container, "day")
       .find(element => queryByText(element, "Monday"));
     
-
-    expect(getByText(monday, "2 spot remaining")).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => getByText(monday, '1 spot remaining'));
+    console.log(prettyDOM(monday));
+    // Working but not yet testing correctly.
+    expect(getByText(monday, "2 spots remaining")).toBeInTheDocument();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {

@@ -9,7 +9,6 @@ export default function reducer(state, action) {
     case SET_APPLICATION_DATA:
       return { ...state, ...action.value }
     case SET_INTERVIEW:
-      console.log(action.value.days)
       return { ...state, 
         appointments: action.value.appointments,
         days: action.value.days }

@@ -7,6 +7,10 @@ import reducer, {
   SET_INTERVIEW
 } from "reducers/application";
 
+import { 
+  getInterviewsForDay, getAppointmentsById, getSpotsForDay
+} from '../helpers/selectors';
+
 export default function useApplicationData() {
 
   const [state, dispatch] = useReducer(reducer, {
@@ -16,6 +20,7 @@ export default function useApplicationData() {
   })
   
   const setDay = day => dispatch({ type: SET_DAY, value: day});
+
   
   useEffect(() => {
     Promise.all([
@@ -47,8 +52,12 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, appointment)
       .then((res) => {
         if (res.status === 204) {
+          
           const day = getDayByInterview(id);
-          day.spots--;
+          if (!getAppointmentsById(state, [id])[0].interview) {
+            day.spots--;
+          }
+
           const days = state.days;
           days[day.id - 1] = day
           dispatch({ type: SET_INTERVIEW, value: 
@@ -64,7 +73,6 @@ export default function useApplicationData() {
       .then((res) => {
         if (res.status === 204) {
           const day = getDayByInterview(id);
-          
           day.spots++;
           const days = state.days;
           days[day.id - 1] = day;
@@ -93,6 +101,18 @@ export default function useApplicationData() {
         return day;
     }
   };
+
+  const countSpots = (interviews) => {
+    let spots = 0;
+
+    for (const interview of interviews) {
+      if (!interview.interview) {
+        spots++;
+      }
+    }
+
+    return spots;
+  }
 
   return {
     state,
