@@ -2,9 +2,9 @@
 
 ## Screenshots
 
-<img src="screenshots/screenshot1.png" alt="Home Page" width="240" />
-<img src="screenshots/screenshot2.png" alt="Home Page, create appointment" width="240" />
-<img src="screenshots/screenshot3.png" alt="Collapsed, confirm delete" width="120" />
+<img src="docs/Schedule.png" alt="Home Page" width="240" />
+<img src="docs/Schedule-Create.png" alt="Home Page, create appointment" width="240" />
+<img src="docs/Schedule-Collapsed-Delete.png" alt="Collapsed, confirm delete" width="120" />
 
 ## Setup
 
