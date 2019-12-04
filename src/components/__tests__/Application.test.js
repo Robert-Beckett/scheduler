@@ -66,7 +66,7 @@ describe("Application", () => {
       element => queryByText(element, "Archie Cohen")
     );
   
-    
+
     // 3. Click the "Cancel" button on the first booked appointment.
     fireEvent.click(getByAltText(appointment, "Delete"));
     

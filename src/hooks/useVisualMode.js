@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+// Manages state of appointment object, allowing to backtrack
+// to old states on cancel etc.
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);

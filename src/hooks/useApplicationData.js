@@ -21,7 +21,7 @@ export default function useApplicationData() {
   
   const setDay = day => dispatch({ type: SET_DAY, value: day});
 
-  
+  // Pull data from API on initial load.
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
