@@ -1,5 +1,11 @@
 # Interview Scheduler
 
+## Screenshots
+
+<img src="screenshots/screenshot1.png" alt="Home Page" width="240" />
+<img src="screenshots/screenshot2.png" alt="Home Page, create appointment" width="240" />
+<img src="screenshots/screenshot3.png" alt="Collapsed, confirm delete" width="120" />
+
 ## Setup
 
 Install dependencies with `npm install`.
