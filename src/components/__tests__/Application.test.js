@@ -11,6 +11,9 @@ import Application from "components/Application";
 import { debug } from "util";
 
 afterEach(cleanup);
+beforeEach(() => {
+  axios.get('/api/debug/reset');
+});
 
 describe("Application", () => {
   it("changes the schedule when a new day is selected", async () => {
@@ -78,8 +81,7 @@ describe("Application", () => {
     // 7. Confirm that the DayListItem with the text "Monday" has increased the number of spots by one.
     const monday = getAllByTestId(container, "day")
       .find(element => queryByText(element, "Monday"));
-    
-    await waitForElementToBeRemoved(() => getByText(monday, '1 spot remaining'));
+
     console.log(prettyDOM(monday));
     // Working but not yet testing correctly.
     expect(getByText(monday, "2 spots remaining")).toBeInTheDocument();
